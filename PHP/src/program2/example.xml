@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+    <book>
+        <title>PHP Programming</title>
+        <author>John Doe</author>
+        <price>29.99</price>
+    </book>
+    <book>
+        <title>Web Development Basics</title>
+        <author>Jane Doe</author>
+        <price>19.95</price>
+    </book>
+</bookstore>
