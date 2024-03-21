@@ -1,0 +1,77 @@
+﻿Write a PHP program to display customer information from a database using laravel.
+First, make sure you have Laravel installed on your system. If not, you can install it using Composer.
+Create a new Laravel project using Composer:
+composer create-project --prefer-dist laravel/laravel display-customer
+
+
+Navigate into your project directory:
+cd display-customer
+
+
+Set up your database in the .env file:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+
+
+For this program you have to create a table called student_details inside your database and create 5 columns under your table.
+The column names are id, first_name, last_name, city_name, email and insert 2 rows into the columns.
+Generate the URL Shortener controller:
+php artisan make:controller StudViewController
+
+
+Define routes in routes/web.php:
+use App\Http\Controllers\StudViewController;
+Route::get('/',[StudViewController::class,'index']);
+
+
+Implement the controller methods in app/Http/Controllers/ StudViewController.php:
+<?php
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+class StudViewController extends Controller {
+public function index(){
+$users = DB::select('select * from student_details');
+return view('stud_view',['users'=>$users]);
+}
+}
+
+
+Create views in resources/views:
+Create stud_view.blade.php:
+<!DOCTPE html>
+<html>
+<head>
+<title>View Student Records</title>
+</head>
+<body>
+<table border = "1">
+<tr>
+<td>Id</td>
+<td>First Name</td>
+<td>Last Name</td>
+<td>City Name</td>
+<td>Email</td>
+</tr>
+@foreach ($users as $user)
+<tr>
+<td>{{ $user->id }}</td>
+<td>{{ $user->first_name }}</td>
+<td>{{ $user->last_name }}</td>
+<td>{{ $user->city_name }}</td>
+<td>{{ $user->email }}</td>
+</tr>
+@endforeach
+</table>
+</body>
+</html>
+
+
+That's it! You've created a basic Customer display from the database in Laravel. You can now run your Laravel application using:
+php artisan serve
