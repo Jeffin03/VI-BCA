@@ -5,6 +5,7 @@ services:
     build: .
     volumes:
       - ./src:/var/www/html
+      - ./conf/000-default.conf:/etc/apache2/sites-available/000-default.conf
     ports:
       - 9000:80
   
